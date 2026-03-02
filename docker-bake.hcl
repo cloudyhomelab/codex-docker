@@ -1,7 +1,7 @@
 variable "REGISTRY" { default = "docker.io" }
 variable "NAMESPACE"  { default = "binarycodes" }
 variable "IMAGE_NAME" { default = "codex-local" }
-variable "CODEX_VERSION" { default = "0.104.0" }
+variable "CODEX_VERSION" { default = "0.106.0" }
 
 group "default" {
   targets = ["all-java-versions"]
