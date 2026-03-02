@@ -1,6 +1,8 @@
-ARG JAVA_VERSION="21.0.10.fx-zulu"
+ARG CODEX_VERSION="unknown"
+ARG JAVA_VERSION="unknown"
 
 FROM node:trixie-slim AS base-installer
+ARG CODEX_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
@@ -14,7 +16,7 @@ RUN apt-get update \
         unzip \
         zip \
     && rm -rf /var/lib/apt/lists/* \
-    && npm install -g @openai/codex
+    && npm install -g @openai/codex@"${CODEX_VERSION}"
 
 RUN useradd -m -s /bin/bash codex
 USER codex

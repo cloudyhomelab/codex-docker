@@ -1,10 +1,7 @@
 variable "REGISTRY" { default = "docker.io" }
 variable "NAMESPACE"  { default = "binarycodes" }
 variable "IMAGE_NAME" { default = "codex-local" }
-
-variable "title" { default = "codex-local" }
-variable "description" { default = "Docker container to run codex workloads" }
-
+variable "CODEX_VERSION" { default = "0.104.0" }
 
 group "default" {
   targets = ["all-java-versions"]
@@ -14,6 +11,16 @@ target "base-installer" {
   context = "."
   dockerfile = "Dockerfile"
   target = "base-installer"
+
+  args = {
+    CODEX_VERSION = CODEX_VERSION
+  }
+
+  labels = {
+    "org.opencontainers.image.title" = "codex-local"
+    "org.opencontainers.image.description" = "Docker container to run codex workloads"
+    "net.cloudyhome.codex.version" = CODEX_VERSION
+  }
 }
 
 target "all-java-versions" {
@@ -21,8 +28,6 @@ target "all-java-versions" {
   target = "final"
 
   labels = {
-    "org.opencontainers.image.title" = title
-    "org.opencontainers.image.description" = description
     "org.opencontainers.image.version" = "jdk-${item.major}"
   }
 
@@ -53,8 +58,6 @@ target "multi-arch" {
   target = "final"
 
   labels = {
-    "org.opencontainers.image.title" = title
-    "org.opencontainers.image.description" = description
     "org.opencontainers.image.version" = "jdk-${item.major}"
   }
 
