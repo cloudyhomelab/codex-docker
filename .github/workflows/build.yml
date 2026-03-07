@@ -8,6 +8,9 @@ on:
     paths-ignore:
       - ".github/**"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 env:
   REGISTRY: docker.io
 
