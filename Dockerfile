@@ -13,6 +13,7 @@ RUN apt-get update \
     git \
     maven \
     ncurses-term \
+    python3 \
     ripgrep \
     terminfo \
     unzip \
