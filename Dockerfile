@@ -11,6 +11,7 @@ RUN apt-get update \
     ca-certificates \
     curl \
     git \
+    maven \
     ncurses-term \
     ripgrep \
     terminfo \
